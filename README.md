@@ -1,3 +1,31 @@
+## Com docker-compose
+* Iniciando containers
+```bash
+docker-compose up -d
+```
+
+* Listando containers
+```bash
+docker-compose ps
+```
+
+* Visualizando logs do container em tempo real ( spark_to_start ou spark_legacy)
+```bash
+docker-compose logs -f spark_to_start
+```
+
+* Acessando terminal de um container ( spark_to_start ou spark_legacy)
+```bash
+docker exec -it spark_to_start bash
+```
+
+* Derrubando containers
+```bash
+docker-compose down -v
+```
+
+## Com helm
+
 * Iniciando projeto com release 3.4.0:
 ```bash
 helm install better-release ./pyspark_chart --dry-run --debug --set env=prod
@@ -7,7 +35,6 @@ helm install better-release ./pyspark_chart --dry-run --debug --set env=prod
 ```bash
 helm install good-release ./pyspark_chart --dry-run --debug --set env=prod --set env=dev
 ```
-
 
 * Instalando helm: [link](https://helm.sh/docs/intro/install/#from-apt-debianubuntu)
 
