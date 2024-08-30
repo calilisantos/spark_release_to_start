@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-to-start
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-to-start
+  template:
+    metadata:
+      labels:
+        app: spark-to-start
+    spec:
+      containers:
+        - name: spark-to-start
+          image: apache/spark-py:v3.4.0
+          env:
+            # - name: JAVA_HOME
+            #   value: "/opt/java/openjdk"
+            # - name: SPARK_HOME
+            #   value: "/opt/spark"
+            - name: PATH
+              value: "/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo This was the JAVA_HOME $JAVA_HOME
+              echo SPARK_HOME: $SPARK_HOME &&  # Verifica se a variável SPARK_HOME está definida corretamente
+              ls -l /app/features.py
+              ls -l /opt/spark &&  # Verifica se o diretório do Spark é acessível
+              ls -ld /root/.ivy2
+              echo IVY_HOME: $IVY_HOME
+              spark-submit --version
+              spark-submit /app/features.py
+              tail -f /dev/null
+          volumeMounts:
+            - name: features-script
+              mountPath: /app/features.py
+              subPath: features.py
+      volumes:
+        - name: features-script
+          configMap:
+            name: pyspark-config
+      securityContext:
+        runAsUser: 0 # temporary solution to execute spark-submit
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-legacy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-legacy
+  template:
+    metadata:
+      labels:
+        app: spark-legacy
+    spec:
+      containers:
+        - name: spark-legacy
+          image: apache/spark-py:v3.2.4
+          env:
+            # - name: JAVA_HOME
+            #   value: "/usr/local/openjdk-11"
+            # - name: SPARK_HOME
+            #   value: "/opt/spark"
+            - name: PATH
+              value: "/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo This was the JAVA_HOME $JAVA_HOME
+              echo SPARK_HOME: $SPARK_HOME &&  # Verifica se a variável SPARK_HOME está definida corretamente
+              ls -l /app/features.py
+              ls -l /opt/spark &&  # Verifica se o diretório do Spark é acessível
+              ls -ld /root/.ivy2
+              echo IVY_HOME: $IVY_HOME
+              spark-submit --version
+              spark-submit /app/features.py
+              tail -f /dev/null
+          volumeMounts:
+            - name: features-script
+              mountPath: /app/features.py
+              subPath: features.py
+      volumes:
+        - name: features-script
+          configMap:
+            name: pyspark-config
+      securityContext:
+        runAsUser: 0 # temporary solution to execute spark-submit
