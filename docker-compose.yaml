@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  spark_to_start:
+    image: apache/spark-py:v3.4.0
+    container_name: spark_to_start
+    volumes:
+      - ./features.py:/app/features.py
+    environment:
+      - PATH=/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    command: |
+      bash -c "
+      spark-submit /app/features.py
+      tail -f /dev/null
+      "
+
+  spark_legacy:
+    image: apache/spark-py:v3.2.4
+    container_name: spark_legacy
+    volumes:
+      - ./features.py:/app/features.py
+    environment:
+      - PATH=/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    command: |
+      bash -c "
+      spark-submit /app/features.py
+      tail -f /dev/null
+      "
