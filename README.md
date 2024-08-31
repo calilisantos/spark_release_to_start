@@ -20,18 +20,18 @@ Aqui você vai encontrar o comparativo da versão **3.4.0** com a **3.2.4** do S
 - [Comandos úteis](#comandos-uteis)
 
 ## <a id='release'>[Sobre a release](#topicos)</a>
-A release **3.3.0** e **3.4.0** do Spark trouxe diversas melhorias e correções de bugs.<br/>Pensando no processamento dos dados, os seguintes métodos se destacam:
+As releases **3.3.0** e **3.4.0** do Spark trouxeram diversas melhorias e correções de bugs.<br/>Pensando no processamento dos dados, os seguintes métodos se destacam:
 * **withColumns**: Com a release **3.3.0**, permite a criação de múltiplas colunas em um único comando.
 * **isEmpty**: A partir da release **3.3.0**, verifica se o DataFrame está vazio de forma eficiente.
 * **withColumnsRenamed**: Da release **3.4.0**, renomeia várias colunas em um único comando.
 * **Vários métodos de datas, estatísticos e de string** foram adicionados ou melhorados.
 
-Os 3 primeiros são exemplificados no arquivo [`features.py`](features.py) com seus comportamentos nas versões **3.2.4** e **3.4.0** do Spark exploradas com as ferramentas apresentadas a seguir.
+Os 3 primeiros são exemplificados no arquivo [`features.py`](features.py), demonstrando seus comportamentos nas versões **3.2.4** e **3.4.0** do Spark.
 
-Esses registros e novidades sobre os lançamentos do Spark podem ser acessadas [aqui](https://spark.apache.org/news/index.html)
+Os registros das releases e novidades sobre o Spark podem ser acessados [aqui](https://spark.apache.org/news/index.html)
 
 ## <a id='pre-requisitos'>[Executando comparativo](#topicos)</a>
-Para reproduzir as execuções a seguir, é necessário possuir as seguintes ferramentas:
+Para reproduzir as instruções abaixo são necessárias as seguintes ferramentas:
 
 | Ferramenta | Versão Utilizada |
 | - | - |
@@ -154,7 +154,7 @@ kubectl logs -f spark-to-start
 ## <a id='helm'>[Com helm](#topicos)</a>
 O helm adiciona uma camada de abstração para a criação de manifestos kubernetes.
 
-[Aqui](spark_chart) você encontra um chart helm para a orquestração dos deployments das versões 3.2.4 e 3.4.0 do Spark, com sua execução descrita a seguir:
+[Aqui](spark_chart) você encontra o chart helm criado para a orquestração dos deployments das versões 3.2.4 e 3.4.0 do Spark, com sua execução descrita a seguir:
 
 
 * ### [NÃO EXECUTE - Ilustrativo] Criando chart
