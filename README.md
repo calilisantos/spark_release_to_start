@@ -44,6 +44,8 @@ Para reproduzir as execuções a seguir, é necessário possuir as seguintes fer
 ## <a id='dockerfile'>[Com Dockerfile](#topicos)</a>
 É possível executar o projeto com o Dockerfile disponível na raiz do projeto. Para isso, siga os passos a seguir:
 
+![dockerfile gif](docs/dockerfile.gif)
+
 ### 1. Comentar/Descomentar a versão do Spark desejada no Dockerfile:
 ```Dockerfile
 # FROM apache/spark-py:v3.4.0
@@ -87,6 +89,8 @@ docker exec -it <container_id> bash
 
 ## <a id='docker-compose'>[Com docker-compose](#topicos)</a>
 Com o docker-compose será executado simultaneamente os dois containers com as diferentes versões do Spark. Para isso, siga os passos a seguir:
+
+![docker-compose gif](docs/docker-compose.gif)
 
 * ### Iniciando containers
 ```bash
