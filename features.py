@@ -16,12 +16,12 @@ print("[INFO] Sample data\n")
 
 data = [
     {
-	    "client.id": "1",
-	    "client.name": "Mary"
+        "client.id": "1",
+        "client.name": "Mary"
     },
     {
-	    "client.id": "2",
-	    "client.name": "Anna"
+        "client.id": "2",
+        "client.name": "Anna"
     }
 ]
 
@@ -39,6 +39,8 @@ new_columns = {
 print("[INFO] new_columns dict:\n", new_columns, "\n")
 
 dataframe = dataframe.withColumns(new_columns)
+# dataframe = dataframe.withColumn("client.country", F.lit("USA")) \
+#     .withColumn("client.job", F.lit("Data Engineer"))
 dataframe.show()
 
 # withColumnsRenamed feature
@@ -49,8 +51,16 @@ columns_renamed = {column: column.replace(".", "_") for column in dataframe.colu
 print("[INFO] columns_renamed dict\n", columns_renamed, "\n")
 
 dataframe = dataframe.withColumnsRenamed(columns_renamed)
+# dataframe = (
+#     dataframe
+#         .withColumnRenamed("client.id", "client_id")
+#         .withColumnRenamed("client.name", "client_name")
+#         .withColumnRenamed("client.country", "client_country")
+#         .withColumnRenamed("client.job", "client_job")
+# )
 dataframe.show()
 
 # isEmpty feature
 print("[INFO] Empty dataframe check: dataframe.isEmpty() (new in release 3.3.0)\n")
 print("dataframe is empty?\n", dataframe.isEmpty())
+# print("dataframe is empty?\n", dataframe.count() > 0)
