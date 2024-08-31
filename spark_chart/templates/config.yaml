@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pyspark-config
+data:
+  features.py: |
+{{ .Files.Get "files/features.py" | indent 4 }}

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.legacyDeployment }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.legacyDeployment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.legacyDeployment }}
+    spec:
+      containers:
+        - name: {{ .Values.legacyDeployment}}
+          image: {{ .Values.image.repository }}:{{ .Values.image.legacyTag }}
+          {{ include "spark_chart.commonContainerSpecs" . | nindent 10 }}
+          volumeMounts:
+            {{- toYaml .Values.volumeMounts | nindent 12 }}
+      volumes:
+        {{- toYaml .Values.volumes | nindent 8 }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
