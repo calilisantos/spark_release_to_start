@@ -120,6 +120,8 @@ docker-compose down -v
 ## <a id='kubernetes'>[Com kubernetes](#topicos)</a>
 Com as instruções abaixo também é possível executar simultaneamente as duas versões do Spark com seus serviços kubernetes local ou remoto utilizando o [manifesto](k8s/deployment.yaml) e código fonte do repositório.
 
+![kubernetes](docs/kubernetes.gif)
+
 >**Tendo o `kubectl` e um cliente kubernetes como o `minikube` instalado**
 * ### Iniciar cliente kubernetes (como o minikube)
 ```bash
@@ -155,6 +157,7 @@ kubectl logs -f spark-to-start
 O helm adiciona uma camada de abstração para a criação de manifestos kubernetes.
 
 [Aqui](spark_chart) você encontra o chart helm criado para a orquestração dos deployments das versões 3.2.4 e 3.4.0 do Spark, com sua execução descrita a seguir:
+>**Com o `kubectl` e cliente kubernetes como o `minikube` instalado e rodando**
 
 
 * ### [NÃO EXECUTE - Ilustrativo] Criando chart
