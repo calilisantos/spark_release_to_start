@@ -66,26 +66,60 @@ kubectl logs -f spark-to-start
 
 ## Com helm
 
-* Iniciando projeto com release 3.4.0:
+* Criando chart
 ```bash
-helm install better-release ./pyspark_chart --dry-run --debug --set env=prod
+helm create spark_chart
 ```
 
-* Iniciando projeto com release 3.2.4:
+* Testando sintaxe do chart
 ```bash
-helm install good-release ./pyspark_chart --dry-run --debug --set env=prod --set env=dev
+helm lint spark_chart
 ```
+
+* Validando manifestos que serão gerados
+```bash
+helm install spark-release ./spark_chart --dry-run --debug
+# ou
+helm template spark-release ./spark_chart
+
+* Criando release
+```bash
+helm install spark-release ./spark_chart
+
+# ou
+helm install --debug --dry-run spark-release ./spark_chart
+```
+
+* Verificando status de um release
+```bash
+helm status spark-release
+```
+
+* Listando releases
+```bash
+helm list --all
+```
+
+* Atualizando release
+```bash
+helm upgrade spark-release ./spark_chart
+# ou
+helm upgrade --debug --dry-run spark-release ./spark_chart
+```
+
+* Desinstalando release
+```bash
+helm uninstall spark-release
+```
+
+## Comandos úteis:
+
 
 * Instalando helm: [link](https://helm.sh/docs/intro/install/#from-apt-debianubuntu)
 
 * Iniciando cluster kubernetes com minikube:
 ```bash
 minikube start --kubernetes-version=v1.23.8
-```
-
-* Iniciando release do helm:
-```bash
-helm install --debug --dry-run <nome-da-release> ./<diretorio-do-chart>
 ```
 
 * Passando values para a release (Com install ou upgrade):
