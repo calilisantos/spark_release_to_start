@@ -159,6 +159,7 @@ O helm adiciona uma camada de abstração para a criação de manifestos kuberne
 [Aqui](spark_chart) você encontra o chart helm criado para a orquestração dos deployments das versões 3.2.4 e 3.4.0 do Spark, com sua execução descrita a seguir:
 >**Com o `kubectl` e cliente kubernetes como o `minikube` instalado e rodando**
 
+![kubernetes](docs/helm.gif)
 
 * ### [NÃO EXECUTE - Ilustrativo] Criando chart
 ```bash
