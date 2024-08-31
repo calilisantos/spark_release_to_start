@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.currentDeployment }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.currentDeployment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.currentDeployment }}
+    spec:
+      containers:
+        - name: {{ .Values.currentDeployment}}
+          image: {{ .Values.image.repository }}:{{ .Values.image.currentTag }}
+          {{ include "spark_chart.commonContainerSpecs" . | nindent 10 }}
+          volumeMounts:
+            {{- toYaml .Values.volumeMounts | nindent 12 }}
+      volumes:
+        {{- toYaml .Values.volumes | nindent 8 }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
